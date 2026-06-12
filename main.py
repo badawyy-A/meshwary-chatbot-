@@ -11,6 +11,19 @@ logger = get_logger(__name__)
 
 app = FastAPI(title="Gemini Chat API", version="1.0.0")
 
+@app.on_event("startup")
+async def startup_event():
+    logger.info("========== CONFIG DEBUG ==========")
+    logger.info(f"MODEL_NAME={config.MODEL_NAME}")
+    logger.info(f"TEMPERATURE={config.TEMPERATURE}")
+    logger.info(f"SYSTEM_PROMPT exists={bool(config.SYSTEM_PROMPT)}")
+    logger.info(f"SYSTEM_PROMPT length={len(config.SYSTEM_PROMPT) if config.SYSTEM_PROMPT else 0}")
+    logger.info(f"API_KEYS count={len(config.API_KEYS)}")
+
+    for i, key in enumerate(config.API_KEYS, start=1):
+        logger.info(f"GOOGLE_API_KEY_{i} exists={bool(key)}")
+
+    logger.info("==================================")
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 def get_llm(api_key: str) -> ChatGoogleGenerativeAI:
