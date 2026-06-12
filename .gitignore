@@ -15,3 +15,5 @@ media/
 dump.rdb
 
 __pycache__/
+
+*.log
