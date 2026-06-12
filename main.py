@@ -12,6 +12,8 @@ load_dotenv()
 API_KEYS = [os.getenv(f"GOOGLE_API_KEY_{i}") for i in range(1, 7)]
 API_KEYS = [k for k in API_KEYS if k]
 
+MODEL_NAME = os.getenv("MODEL_NAME")
+
 if not API_KEYS:
     raise ValueError("No API keys found in .env file!")
 
@@ -21,7 +23,7 @@ app = FastAPI(title="Gemini Chat API", version="1.0.0")
 # ── Helpers ───────────────────────────────────────────────────────────────────
 def get_llm(api_key: str, streaming: bool = False) -> ChatGoogleGenerativeAI:
     return ChatGoogleGenerativeAI(
-        model="gemini-2.0-flash-lite",
+        model=MODEL_NAME,
         google_api_key=api_key,
         temperature=0.7,
         streaming=streaming,

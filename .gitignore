@@ -1,1 +1,17 @@
-.env
+# Docker
+*.pid
+
+# Alembic
+*.pyc
+
+# PostgreSQL dumps
+*.sql
+
+# Local uploads
+uploads/
+media/
+
+# Redis
+dump.rdb
+
+__pycache__/
