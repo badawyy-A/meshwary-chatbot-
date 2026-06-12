@@ -17,7 +17,7 @@ if not API_KEYS:
 
 def get_llm(api_key: str) -> ChatGoogleGenerativeAI:
     return ChatGoogleGenerativeAI(
-        model="gemini-1.5-flash",        # or "gemini-1.5-pro"
+        model="gemini-2.0-flash",        
         google_api_key=api_key,
         temperature=0.7,
     )
